@@ -67,8 +67,9 @@ st.markdown("""
     .login-container {
         display: flex;
         justify-content: center;
-        align-items: center;
-        height: 70vh;
+        align-items: flex-start; /* Align to top */
+        padding-top: 5vh;        /* Offset from very top */
+        height: 80vh;
     }
     
     .login-box {
