@@ -64,23 +64,21 @@ st.markdown("""
     }
 
     /* Login Box */
-    .login-container {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start; /* Align to top */
-        padding-top: 5vh;        /* Offset from very top */
-        height: 80vh;
+    .login-box {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(20px);
+        padding: 2.5rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        z-index: 1000;
+        margin-top: 50px;
     }
     
-    .login-box {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(20px);
-        padding: 3rem;
-        border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        width: 100%;
-        max-width: 400px;
+    /* Center the login box using Streamlit columns */
+    .stForm {
+        border: none !important;
+        padding: 0 !important;
     }
 
     /* Chat Input Styling */
@@ -104,10 +102,10 @@ if "authenticated" not in st.session_state:
 
 # Login Page function
 def login_page():
-    st.markdown('<div class="login-container">', unsafe_allow_html=True)
-    with st.container():
+    _, col, _ = st.columns([1, 1.5, 1])
+    with col:
         st.markdown('<div class="login-box">', unsafe_allow_html=True)
-        st.markdown("<h2 style='text-align: center; margin-bottom: 1rem;'>🏗️ Cement Expert AI</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align: center; margin-bottom: 0.5rem;'>🏗️ Cement Expert AI</h2>", unsafe_allow_html=True)
         st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 2rem;'>로그인하여 전문가 시스템을 시작하세요</p>", unsafe_allow_html=True)
         
         with st.form("login_form", clear_on_submit=False):
@@ -122,7 +120,6 @@ def login_page():
                 else:
                     st.error("아이디 또는 비밀번호가 올바르지 않습니다.")
         st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # Main Application Logic
 def main_app():
